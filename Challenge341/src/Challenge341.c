@@ -14,9 +14,9 @@
 	float x, y; // final answer
 	float cosa1,cosa2,sina1,sina2; // avoid recalculating
 	float detA;
-	static float A[2][2]; // static for passing as arguments??
-	static float B[2][1];
-	static float C[2][1];
+	static float **A; // static for passing as arguments??
+	static float **B;
+	static float **C;
 	int i,j,k; // iterators for matMul/whatever
 	float tempTotal; // for use during dot product calc
 int main(void) {
@@ -32,6 +32,17 @@ int main(void) {
 		scanf("%d", &i);
 		return EXIT_SUCCESS;
 	}
+	A = (float**) malloc(2*sizeof(float*));
+	for (i=0; i<2;i++){
+		A[i] = (float*) malloc(2*sizeof(float));
+	}
+	B = (float**) malloc(2*sizeof(float*));
+	C = (float**) malloc(2*sizeof(float*));
+	for (i=0; i<2; i++){
+		B[i] = (float*) malloc(1*sizeof(float));
+		C[i] = (float*) malloc(1*sizeof(float));
+	}
+
 	A[0][0] = -sina2/detA;
 	A[0][1] = cosa2/detA;
 	A[1][0] = -sina1/detA;
